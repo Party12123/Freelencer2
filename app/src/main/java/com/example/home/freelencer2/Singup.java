@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -46,7 +47,6 @@ public class Singup extends AppCompatActivity implements View.OnClickListener {
                 FirebaseUser currentUser = mAuth.getCurrentUser();
                 if(currentUser != null){
                     saveDataUser(currentUser.getUid());
-
                 }
             }
         };
@@ -61,6 +61,11 @@ public class Singup extends AppCompatActivity implements View.OnClickListener {
 
         //CileckEven
         userCreate.setOnClickListener(this);
+        // Configure Google Sign In
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
     }
     @Override
     public void onClick(View v) {
@@ -114,6 +119,6 @@ public class Singup extends AppCompatActivity implements View.OnClickListener {
         mDatabaseRef.child(id).child("Name").setValue(name);
         mDatabaseRef.child(id).child("Email").setValue(email);
         mDatabaseRef.child(id).child("Phone").setValue(phone);
-        Toast.makeText(Singup.this,"Sucressfuly12333",Toast.LENGTH_SHORT).show();
+        Toast.makeText(Singup.this,"Sucressfuly",Toast.LENGTH_SHORT).show();
     }
 }

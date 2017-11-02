@@ -42,6 +42,7 @@ public class SingIn extends AppCompatActivity implements View.OnClickListener {
                 FirebaseUser currentUser = mAuth.getCurrentUser();
                 if(currentUser != null){
                     Toast.makeText(SingIn.this,"Using Working",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(SingIn.this,Home_Toppicp_roblem.class));
                 }
                 else{
                     Toast.makeText(SingIn.this,"Not Using Working",Toast.LENGTH_SHORT).show();

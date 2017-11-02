@@ -39,7 +39,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".Singup" />
-        <activity android:name=".Topic_poblem"></activity>
+        <activity
+            android:name=".Home_Toppicp_roblem"
+            android:label="@string/title_activity_home__toppicp_roblem"></activity>
     </application>
 
 </manifest>
