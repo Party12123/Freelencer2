@@ -50,7 +50,6 @@
             android:name=".Home_Toppicp_roblem"
             android:label="@string/title_activity_home__toppicp_roblem" />
         <activity android:name=".Detail_problem" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".Select_Technician" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -62,7 +61,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:value="AIzaSyB7Xu8VRgK4h7gmDX0GqOmKw6ADzfO_Luo" />
 
         <activity
             android:name=".SendLocation"

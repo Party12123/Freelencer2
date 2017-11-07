@@ -25,10 +25,8 @@ public class Select_Technician extends AppCompatActivity {
                         .inflate(R.layout.cardview_technician,parent,false);
                 return new technicianViewholder(list_Technician);
             }
-
             @Override
             public void onBindViewHolder(technicianViewholder holder, int position) {
-
             }
 
             @Override
