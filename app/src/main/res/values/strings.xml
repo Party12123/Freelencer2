@@ -22,4 +22,5 @@
     <string name="Time"> </string>
     <string name="select">เลือก</string>
     <string name="connect">ติดต่อ</string>
+    <string name="title_activity_send_location">Map</string>
 </resources>
