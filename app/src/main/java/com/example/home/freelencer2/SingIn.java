@@ -99,7 +99,7 @@ public class SingIn extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void SingUp(){
-        startActivity(new Intent(SingIn.this,Singup.class));
+        startActivity(new Intent(SingIn.this,Signup.class));
     }
 
     private boolean validateForm() {

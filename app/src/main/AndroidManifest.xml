@@ -38,10 +38,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Singup" />
+        <activity android:name=".Signup" />
         <activity
             android:name=".Home_Toppicp_roblem"
-            android:label="@string/title_activity_home__toppicp_roblem"></activity>
+            android:label="@string/title_activity_home__toppicp_roblem" />
+        <activity android:name=".Detail_problem" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Select_Technician"></activity>
     </application>
 
 </manifest>

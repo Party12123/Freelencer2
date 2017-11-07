@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class Singup extends AppCompatActivity implements View.OnClickListener {
+public class Signup extends AppCompatActivity implements View.OnClickListener {
 
     private EditText userName;
     private EditText userEmail;
@@ -85,7 +85,7 @@ public class Singup extends AppCompatActivity implements View.OnClickListener {
                     mAuth.addAuthStateListener(mAuthListener);
                 }
                 else{
-                    Toast.makeText(Singup.this,"Not Sucressfuly",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Signup.this,"Not Sucressfuly",Toast.LENGTH_SHORT).show();
                     mProgress.dismiss();
                 }
             }
@@ -119,6 +119,6 @@ public class Singup extends AppCompatActivity implements View.OnClickListener {
         mDatabaseRef.child(id).child("Name").setValue(name);
         mDatabaseRef.child(id).child("Email").setValue(email);
         mDatabaseRef.child(id).child("Phone").setValue(phone);
-        Toast.makeText(Singup.this,"Sucressfuly",Toast.LENGTH_SHORT).show();
+        Toast.makeText(Signup.this,"Sucressfuly",Toast.LENGTH_SHORT).show();
     }
 }
