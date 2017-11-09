@@ -4,43 +4,73 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Select_Technician extends AppCompatActivity {
     RecyclerView recyclerView;
-    private RecyclerView.Adapter<technicianViewholder> adapter;
-
+    List<List_Technician> list_Dataset;
+    FirebaseDatabase database ;
+    DatabaseReference databaseReference;
+    Adapter_List adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        recyclerView = new RecyclerView(this);
+        setContentView(R.layout.select_technician);
+        list_Dataset = new ArrayList<>();
+        recyclerView = findViewById(R.id.list_technician);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new RecyclerView.Adapter<technicianViewholder>(){
 
-            @Override
-            public technicianViewholder onCreateViewHolder(ViewGroup parent, int viewType) {
-                View list_Technician = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.cardview_technician,parent,false);
-                return new technicianViewholder(list_Technician);
-            }
-            @Override
-            public void onBindViewHolder(technicianViewholder holder, int position) {
-            }
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference().child("ช่าง");
 
-            @Override
-            public int getItemCount() {
-                return 1;
-            }
-        };
+        adapter = new Adapter_List(list_Dataset);
         recyclerView.setAdapter(adapter);
-        setContentView(recyclerView);
+        list2();
+        List();
     }
-    private class technicianViewholder extends RecyclerView.ViewHolder{
+    private void List(){
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                list_Dataset.removeAll(list_Dataset);
+                for (DataSnapshot datashot:dataSnapshot.getChildren()) {
+                    String x = datashot.child("ชื่อ").getValue().toString();
+                    String y = datashot.child("เบอร์").getValue().toString();
+                    String z = datashot.child("เวลา").getValue().toString();
+                    List_Technician list = new List_Technician(x,y,z);
+                    list_Dataset.add(list);
+                         Toast.makeText(Select_Technician.this," "+list_Dataset.size(),Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(Select_Technician.this,,Toast.LENGTH_SHORT).show();
 
-        public technicianViewholder(View itemView) {
-            super(itemView);
-        }
+
+
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
+    private void list2(){
+        List_Technician news = new List_Technician("Party","55555","568941");
+        list_Dataset.add(news);
+    }
+
 }
+
+
