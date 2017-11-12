@@ -37,7 +37,6 @@ public class Select_Technician extends AppCompatActivity {
 
         adapter = new Adapter_List(list_Dataset);
         recyclerView.setAdapter(adapter);
-        list2();
         List();
     }
     private void List(){
@@ -46,16 +45,12 @@ public class Select_Technician extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 list_Dataset.removeAll(list_Dataset);
                 for (DataSnapshot datashot:dataSnapshot.getChildren()) {
-                    String x = datashot.child("ชื่อ").getValue().toString();
-                    String y = datashot.child("เบอร์").getValue().toString();
-                    String z = datashot.child("เวลา").getValue().toString();
-                    List_Technician list = new List_Technician(x,y,z);
+                    String name = datashot.child("ชื่อ").getValue().toString();
+                    String image = datashot.child("ภาพ").getValue().toString();
+                    String phone = datashot.child("เบอร์").getValue().toString();
+                    String time = datashot.child("เวลา").getValue().toString();
+                    List_Technician list = new List_Technician(name,phone,time,image);
                     list_Dataset.add(list);
-                         Toast.makeText(Select_Technician.this," "+list_Dataset.size(),Toast.LENGTH_SHORT).show();
-                   // Toast.makeText(Select_Technician.this,,Toast.LENGTH_SHORT).show();
-
-
-
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -65,10 +60,6 @@ public class Select_Technician extends AppCompatActivity {
 
             }
         });
-    }
-    private void list2(){
-        List_Technician news = new List_Technician("Party","55555","568941");
-        list_Dataset.add(news);
     }
 
 }

@@ -6,17 +6,20 @@ package com.example.home.freelencer2;
 
 public class List_Technician {
     // public String image;
-     public String name;
-     public String phone;
-     public String time;
+     private String name;
+     private String phone;
+     private String time;
+     private String image;
+
 
     public List_Technician(){
 
     }
-    public List_Technician( String name , String phone, String time){
+    public List_Technician( String name , String phone, String time,String image){
         this.name = name;
         this.phone = phone;
         this.time = time;
+        this.image = image;
 
     }
     public void setName(String name) {
@@ -41,6 +44,14 @@ public class List_Technician {
 
     public String getTime() {
         return time;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
 

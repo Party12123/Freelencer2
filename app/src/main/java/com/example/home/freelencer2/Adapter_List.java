@@ -1,5 +1,6 @@
 package com.example.home.freelencer2;
 
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -7,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,9 +38,7 @@ public class Adapter_List extends RecyclerView.Adapter<Adapter_List.Adapter_list
         holder.textViewname.setText(listTechnician.getName());
         holder.textViewPhone.setText(listTechnician.getPhone());
         holder.textViewTime.setText(listTechnician.getTime());
-       // holder.imageView.setI;
-
-
+        Picasso.with(holder.imageView.getContext()).load(listTechnician.getImage()).into(holder.imageView);
     }
 
     @Override
@@ -53,10 +54,13 @@ public class Adapter_List extends RecyclerView.Adapter<Adapter_List.Adapter_list
         TextView textViewPhone;
         public Adapter_list2(View itemView) {
             super(itemView);
-           // imageView = itemView.findViewById(R.id.imageViewTechnician);
+            imageView = itemView.findViewById(R.id.imageViewTechnician);
             textViewname = itemView.findViewById(R.id.textViewName);
             textViewPhone = itemView.findViewById(R.id.textViewPhone);
             textViewTime = itemView.findViewById(R.id.textViewTime);
+        }
+        public void setImage(String image){
+
         }
     }
 }
