@@ -52,11 +52,11 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
         };
 
         //View
-        userName = (EditText) findViewById(R.id.userName);
-        userPassword = (EditText) findViewById(R.id.userPassword);
-        userEmail = (EditText) findViewById(R.id.userEmail);
-        userPhone = (EditText) findViewById(R.id.userPhone);
-        userCreate = (Button) findViewById(R.id.userCreate);
+        userName = findViewById(R.id.userName);
+        userPassword = findViewById(R.id.userPassword);
+        userEmail = findViewById(R.id.userEmail);
+        userPhone = findViewById(R.id.userPhone);
+        userCreate = findViewById(R.id.userCreate);
         mProgress = new ProgressDialog(this);
 
         //CileckEven

@@ -29,6 +29,7 @@ public class SingIn extends AppCompatActivity implements View.OnClickListener {
     private ProgressDialog mProgress;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private Button luserSingout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -40,12 +40,12 @@ public class homeFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
-         problem_Car = (Button) view.findViewById(R.id.problem_Car);
-         problem_Custum = (Button) view.findViewById(R.id.problem_custum);
-         problem_Cycle = (Button) view.findViewById(R.id.problem_cycle);
-         problem_Elec = (Button) view.findViewById(R.id.problem_Elec);
-         problem_Home = (Button) view.findViewById(R.id.problem_home);
-         problem_Normal = (Button) view.findViewById(R.id.problem_normal);
+         problem_Car =  view.findViewById(R.id.problem_Car);
+         problem_Custum =  view.findViewById(R.id.problem_custum);
+         problem_Cycle =  view.findViewById(R.id.problem_cycle);
+         problem_Elec = view.findViewById(R.id.problem_Elec);
+         problem_Home =  view.findViewById(R.id.problem_home);
+         problem_Normal =  view.findViewById(R.id.problem_normal);
 
          //
         problem_Normal.setOnClickListener(this);

@@ -8,56 +8,28 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:849499800356:android:4e5d4929f92432b5",
-        "android_client_info": {
-          "package_name": "com.example.home.freelancer"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "849499800356-670p27n6tgqaca7jvlbt5mmovo2f76sj.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.home.freelancer",
-            "certificate_hash": "57772ca47db75eb8310881504cfa2775c065e0f3"
-          }
-        },
-        {
-          "client_id": "849499800356-q8at3lt1thfsg9m29hd2qod8ikpcfidf.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyChzaEjdzHRIFBeOFawoahYnoiQZ7C4HGk"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "849499800356-q8at3lt1thfsg9m29hd2qod8ikpcfidf.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:849499800356:android:15600a389a0c88b6",
         "android_client_info": {
           "package_name": "com.example.home.freelencer2"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "849499800356-no6nrkun6nr96s1nti2utft5asgjedpm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.home.freelencer2",
+            "certificate_hash": "15de3af0bf42ef12a4768bc200a6c60866064e89"
+          }
+        },
+        {
+          "client_id": "849499800356-t0un93e3jh5p9jg5sose6fapqndb1ujo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.home.freelencer2",
+            "certificate_hash": "d7c1442a137ad84544d532d0657b4db2057ca710"
+          }
+        },
         {
           "client_id": "849499800356-9jq27u2sclnrdi4v5p2jc1gsiti3avi2.apps.googleusercontent.com",
           "client_type": 1,

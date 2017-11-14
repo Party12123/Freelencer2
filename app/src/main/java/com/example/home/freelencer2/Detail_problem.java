@@ -28,6 +28,7 @@ public class Detail_problem extends AppCompatActivity implements View.OnClickLis
         detail_Problem = findViewById(R.id.editTextProblem);
         next = findViewById(R.id.nextButton);
         next.setOnClickListener(this);
+
     }
 
     @Override

@@ -49,7 +49,8 @@ public class Select_Technician extends AppCompatActivity {
                     String image = datashot.child("ภาพ").getValue().toString();
                     String phone = datashot.child("เบอร์").getValue().toString();
                     String time = datashot.child("เวลา").getValue().toString();
-                    List_Technician list = new List_Technician(name,phone,time,image);
+                    String uid = datashot.getKey();
+                    List_Technician list = new List_Technician(name,phone,time,image,uid);
                     list_Dataset.add(list);
                 }
                 adapter.notifyDataSetChanged();
