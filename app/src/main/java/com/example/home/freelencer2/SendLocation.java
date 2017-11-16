@@ -2,8 +2,6 @@ package com.example.home.freelencer2;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -12,10 +10,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class SendLocation extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener {
+public class SendLocation extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private Button conFirm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,8 +22,6 @@ public class SendLocation extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-       // conFirm = findViewById(R.id.buttonConfirm);
-        conFirm.setOnClickListener(this);
     }
     /**
      * Manipulates the map once available.
@@ -44,12 +40,5 @@ public class SendLocation extends FragmentActivity implements OnMapReadyCallback
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-    }
-
-    @Override
-    public void onClick(View view) {
-        if(view == conFirm){
-
-        }
     }
 }
