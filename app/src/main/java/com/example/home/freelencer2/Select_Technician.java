@@ -1,10 +1,13 @@
 package com.example.home.freelencer2;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
@@ -17,12 +20,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Select_Technician extends AppCompatActivity {
+public class Select_Technician extends AppCompatActivity implements View.OnClickListener {
     RecyclerView recyclerView;
     List<List_Technician> list_Dataset;
     FirebaseDatabase database ;
     DatabaseReference databaseReference;
     Adapter_List adapter;
+
+    private Button buttonnext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,13 +36,14 @@ public class Select_Technician extends AppCompatActivity {
         recyclerView = findViewById(R.id.list_technician);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference().child("ช่าง");
-
-        adapter = new Adapter_List(list_Dataset);
+        buttonnext = findViewById(R.id.buttonConncet);
+        adapter = new Adapter_List(list_Dataset,this);
         recyclerView.setAdapter(adapter);
         List();
+        buttonnext.setOnClickListener(this);
+
     }
     private void List(){
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -63,6 +69,10 @@ public class Select_Technician extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onClick(View view) {
+        startActivity(new Intent(this,SendLocation.class));
+    }
 }
 
 
