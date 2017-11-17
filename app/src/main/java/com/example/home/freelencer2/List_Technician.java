@@ -13,7 +13,7 @@ public class List_Technician {
      private String time;
      private String image;
      private String uid;
-     private Context mcon;
+     private Context getcontext;
 
 
 
@@ -67,12 +67,12 @@ public class List_Technician {
         this.uid = uid;
     }
 
-    public Context getMcon() {
-        return mcon;
+    public Context getGetcontext() {
+        return getcontext;
     }
 
-    public void setMcon(Context mcon) {
-        this.mcon = mcon;
+    public void setGetcontext(Context getcontext) {
+        this.getcontext = getcontext;
     }
 }
 

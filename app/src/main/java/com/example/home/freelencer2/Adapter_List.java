@@ -1,7 +1,11 @@
 package com.example.home.freelencer2;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -17,6 +21,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 /**
  * Created by Home on 11/8/2017.
  */
@@ -24,9 +30,14 @@ import java.util.List;
 public class Adapter_List extends RecyclerView.Adapter<Adapter_List.Adapter_list2> {
     List<List_Technician> list;
     boolean check = false;
+    int checkpossotion;
+    String name,address,phone,detail;
+    Context context;
+    public Adapter_List(){
 
-
-    public Adapter_List(List<List_Technician> list) {
+    }
+    public Adapter_List(List<List_Technician> list,Context context) {
+        this.context = context;
         this.list = list;
     }
 
@@ -38,7 +49,7 @@ public class Adapter_List extends RecyclerView.Adapter<Adapter_List.Adapter_list
     }
 
     @Override
-    public void onBindViewHolder(final Adapter_list2 holder, int position) {
+    public void onBindViewHolder(final Adapter_list2 holder, final int position) {
         final List_Technician listTechnician =list.get(position);
         holder.textViewname.setText(listTechnician.getName());
         holder.textViewPhone.setText(listTechnician.getPhone());
@@ -49,29 +60,38 @@ public class Adapter_List extends RecyclerView.Adapter<Adapter_List.Adapter_list
             public void onClick(View view) {
                 if(check != true){
                     holder.select.setBackgroundColor( -16711936);
-                    holder.select.setText("เลือกแล้ว");
+                    holder.select.setText("ยกเลิก");
                     String uid = listTechnician.getUid();
                     check = true;
+                    checkpossotion = position;
+               //     Toast.makeText(listTechnician.getGetcontext()," "+uid,Toast.LENGTH_SHORT).show();
+                }
+                else if(check == true && checkpossotion == position){
+                    holder.select.setBackgroundColor( -12303292);
+                    holder.select.setText("เลือก");
+                    check = false;
                 }
             }
         });
 
 
-
-
     }
+
+
     @Override
     public int getItemCount() {
 
         return list.size();
     }
 
-    public class Adapter_list2 extends RecyclerView.ViewHolder {
+    public class Adapter_list2 extends RecyclerView.ViewHolder  {
         ImageView imageView;
         TextView textViewname;
         TextView textViewTime;
         TextView textViewPhone;
         Button select;
+        Button next;
+        List_Technician list_technician = new List_Technician();
         public Adapter_list2(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageViewTechnician);
@@ -79,6 +99,15 @@ public class Adapter_List extends RecyclerView.Adapter<Adapter_List.Adapter_list
             textViewPhone = itemView.findViewById(R.id.textViewPhone);
             textViewTime = itemView.findViewById(R.id.textViewTime);
             select=itemView.findViewById(R.id.buttonSelect);
+            next = itemView.findViewById(R.id.buttonConncet);
         }
+
+    }
+
+    public void SendDetail(String address ,String name ,String phone,String detail ){
+        this.address = address;
+        this.name = name;
+        this.phone = phone;
+        this.detail = detail;
     }
 }
