@@ -31,10 +31,10 @@ public class Adapter_List extends RecyclerView.Adapter<Adapter_List.Adapter_list
     List<List_Technician> list;
     boolean check = false;
     int checkpossotion;
-    String name,address,phone,detail;
     Context context;
+    List_Technician listTechnician;
+    SendDetail sendDetail =new SendDetail();
     public Adapter_List(){
-
     }
     public Adapter_List(List<List_Technician> list,Context context) {
         this.context = context;
@@ -49,8 +49,8 @@ public class Adapter_List extends RecyclerView.Adapter<Adapter_List.Adapter_list
     }
 
     @Override
-    public void onBindViewHolder(final Adapter_list2 holder, final int position) {
-        final List_Technician listTechnician =list.get(position);
+    public void onBindViewHolder(final Adapter_list2 holder,final int position) {
+        listTechnician =list.get(position);
         holder.textViewname.setText(listTechnician.getName());
         holder.textViewPhone.setText(listTechnician.getPhone());
         holder.textViewTime.setText(listTechnician.getTime());
@@ -59,28 +59,23 @@ public class Adapter_List extends RecyclerView.Adapter<Adapter_List.Adapter_list
             @Override
             public void onClick(View view) {
                 if(check != true){
-                    holder.select.setBackgroundColor( -16711936);
+                    listTechnician =list.get(position);
+                    holder.select.setBackgroundColor(-16711936);
                     holder.select.setText("ยกเลิก");
-                    String uid = listTechnician.getUid();
+                    sendDetail.setUid(listTechnician.getUid());
                     check = true;
                     checkpossotion = position;
-               //     Toast.makeText(listTechnician.getGetcontext()," "+uid,Toast.LENGTH_SHORT).show();
                 }
                 else if(check == true && checkpossotion == position){
-                    holder.select.setBackgroundColor( -12303292);
+                    holder.select.setBackgroundColor(-12303292);
                     holder.select.setText("เลือก");
                     check = false;
                 }
             }
         });
-
-
     }
-
-
     @Override
     public int getItemCount() {
-
         return list.size();
     }
 
@@ -90,8 +85,8 @@ public class Adapter_List extends RecyclerView.Adapter<Adapter_List.Adapter_list
         TextView textViewTime;
         TextView textViewPhone;
         Button select;
-        Button next;
-        List_Technician list_technician = new List_Technician();
+        Button connect;
+
         public Adapter_list2(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageViewTechnician);
@@ -99,15 +94,8 @@ public class Adapter_List extends RecyclerView.Adapter<Adapter_List.Adapter_list
             textViewPhone = itemView.findViewById(R.id.textViewPhone);
             textViewTime = itemView.findViewById(R.id.textViewTime);
             select=itemView.findViewById(R.id.buttonSelect);
-            next = itemView.findViewById(R.id.buttonConncet);
+            connect = itemView.findViewById(R.id.buttonConncet);
         }
 
-    }
-
-    public void SendDetail(String address ,String name ,String phone,String detail ){
-        this.address = address;
-        this.name = name;
-        this.phone = phone;
-        this.detail = detail;
     }
 }

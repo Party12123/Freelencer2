@@ -10,14 +10,22 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class SendLocation extends AppCompatActivity implements OnMapReadyCallback {
+public class SendLocation extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
 
+    private Button saveData;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+    SendDetail sendDetail =new SendDetail();
     @Override
     public void onMapReady(GoogleMap googleMap) {
         Toast.makeText(this, "Map is Ready", Toast.LENGTH_SHORT).show();
@@ -34,12 +42,15 @@ public class SendLocation extends AppCompatActivity implements OnMapReadyCallbac
     //vars
     private Boolean mLocationPermissionsGranted = false;
     private GoogleMap mMap;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_location);
-
+        saveData = findViewById(R.id.success);
+        saveData.setOnClickListener(this);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference().child("งานช่าง");
+        Toast.makeText(SendLocation.this,sendDetail.getPhone(),Toast.LENGTH_SHORT).show();
         getLocationPermission();
     }
 
@@ -93,6 +104,18 @@ public class SendLocation extends AppCompatActivity implements OnMapReadyCallbac
                     initMap();
                 }
             }
+        }
+    }
+
+
+
+    @Override
+    public void onClick(View view) {
+
+        if(view == saveData){
+            databaseReference.child(sendDetail.getUid()).push().setValue(sendDetail);
+           // databaseReference.push().setValue(sendDetail);
+            Toast.makeText(this,"Success",Toast.LENGTH_SHORT).show();
         }
     }
 }

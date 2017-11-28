@@ -62,13 +62,13 @@ public class homeFragment extends Fragment implements View.OnClickListener {
    @Override
     public void onClick(View view) {
        if (view == problem_Home){
-           startActivity(new Intent(getActivity(),Detail_problem.class));
+           startActivity(new Intent(getActivity(),Select_Technician.class));
        }
        else if(view == problem_Car){
-            startActivity(new Intent(getActivity(),Detail_problem.class));
+            startActivity(new Intent(getActivity(),Select_Technician.class));
        }
        else if(view == problem_Cycle){
-           startActivity(new Intent(getActivity(),Detail_problem.class));
+           startActivity(new Intent(getActivity(),Select_Technician.class));
        }
     }
 }
