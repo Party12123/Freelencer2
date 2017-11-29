@@ -33,7 +33,7 @@ public class Adapter_List extends RecyclerView.Adapter<Adapter_List.Adapter_list
     int checkpossotion;
     Context context;
     List_Technician listTechnician;
-    SendDetail sendDetail =new SendDetail();
+    SendLocation sendLocation = new SendLocation();
     public Adapter_List(){
     }
     public Adapter_List(List<List_Technician> list,Context context) {
@@ -62,7 +62,7 @@ public class Adapter_List extends RecyclerView.Adapter<Adapter_List.Adapter_list
                     listTechnician =list.get(position);
                     holder.select.setBackgroundColor(-16711936);
                     holder.select.setText("ยกเลิก");
-                    sendDetail.setUid(listTechnician.getUid());
+                    sendLocation.setIdTechnicain(listTechnician.getUid());
                     check = true;
                     checkpossotion = position;
                 }
@@ -86,7 +86,6 @@ public class Adapter_List extends RecyclerView.Adapter<Adapter_List.Adapter_list
         TextView textViewPhone;
         Button select;
         Button connect;
-
         public Adapter_list2(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageViewTechnician);
@@ -95,6 +94,7 @@ public class Adapter_List extends RecyclerView.Adapter<Adapter_List.Adapter_list
             textViewTime = itemView.findViewById(R.id.textViewTime);
             select=itemView.findViewById(R.id.buttonSelect);
             connect = itemView.findViewById(R.id.buttonConncet);
+
         }
 
     }

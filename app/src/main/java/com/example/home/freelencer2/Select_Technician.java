@@ -31,10 +31,8 @@ public class Select_Technician extends AppCompatActivity implements View.OnClick
     FirebaseDatabase database ;
     DatabaseReference databaseReference;
     Adapter_List adapter;
-    public static String uid = null;
     Button btnMap;
-    Button btnMap2;
-   // SendDetail sendDetail =new SendDetail();
+    public  static int check;
 	public Select_Technician(){
 
     }
@@ -52,15 +50,19 @@ public class Select_Technician extends AppCompatActivity implements View.OnClick
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference().child("ช่าง");
-
+        if(check == 0){
+            databaseReference = database.getReference().child("ช่าง").child("บ้าน");
+        }
+        else if( check == 1){
+            databaseReference = database.getReference().child("ช่าง").child("รถยนต์");
+        }
+        else if(check == 2){
+            databaseReference = database.getReference().child("ช่าง").child("จักรยานยนต์");
+        }
         adapter = new Adapter_List(list_Dataset,this);
         recyclerView.setAdapter(adapter);
         btnMap = findViewById(R.id.btnMap);
-        btnMap2 = findViewById(R.id.btnMap2);
-
         btnMap.setOnClickListener(this);
-        btnMap2.setOnClickListener(this);
         List();
         isServicesOK();
     }
@@ -109,13 +111,6 @@ public class Select_Technician extends AppCompatActivity implements View.OnClick
         }
         return false;
     }
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
 
     @Override
     public void onClick(View view) {
@@ -123,9 +118,6 @@ public class Select_Technician extends AppCompatActivity implements View.OnClick
             Intent intent = new Intent(Select_Technician.this, Detail_problem.class);
             startActivity(intent);
         }
-       /* else if(view == btnMap2){
-             Toast.makeText(Select_Technician.this," "+sendDetail.getUid(),Toast.LENGTH_SHORT).show();
-        }*/
     }
 }
 
