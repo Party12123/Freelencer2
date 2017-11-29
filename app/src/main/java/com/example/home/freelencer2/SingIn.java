@@ -1,5 +1,6 @@
 package com.example.home.freelencer2;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -27,8 +28,11 @@ public class SingIn extends AppCompatActivity implements View.OnClickListener {
     private Button googleSing;
     private FirebaseAuth mAuth;
     private ProgressDialog mProgress;
+    private AlertDialog aProgrees;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private Button luserSingout;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +59,10 @@ public class SingIn extends AppCompatActivity implements View.OnClickListener {
         luserPassword = (EditText) findViewById(R.id.luserpassword);
         luserSingin = (Button) findViewById(R.id.luserSignin);
         luserSingup = (Button) findViewById(R.id.luserSingup);
-        luserSingout = (Button) findViewById(R.id.luserSingout);
        // googleSing = (Button) findViewById(R.id.googleSing);
         /// Event SingIn and SingUp
         luserSingin.setOnClickListener(this);
         luserSingup.setOnClickListener(this);
-        luserSingout.setOnClickListener(this);
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -80,8 +82,8 @@ public class SingIn extends AppCompatActivity implements View.OnClickListener {
         if(!validateForm()){
             return;
         }
-        mProgress.setMessage("Sing Up....");
-        mProgress.show();
+        //  mProgress.setMessage("Sing in....");
+       // mProgress.show();
 
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -89,14 +91,12 @@ public class SingIn extends AppCompatActivity implements View.OnClickListener {
                 if(task.isSuccessful()){
                     Toast.makeText(SingIn.this,"SingIn Successfuly",Toast.LENGTH_SHORT).show();
                     mProgress.dismiss();
+                }else{
+                    Toast.makeText(SingIn.this,"รหัสผ่านไม่ถูกต้อง",Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
-    }
-    private void Singout(){
-        mAuth.signOut();
-        Toast.makeText(SingIn.this,"User Singout",Toast.LENGTH_SHORT).show();
-
     }
 
     private void SingUp(){
@@ -132,9 +132,6 @@ public class SingIn extends AppCompatActivity implements View.OnClickListener {
         }
         else if(v == luserSingup){
             SingUp();
-        }
-        else if(v == luserSingout){
-            Singout();
         }
     }
 }
