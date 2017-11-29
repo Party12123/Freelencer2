@@ -1,11 +1,10 @@
 package com.example.home.freelencer2;
 
-import android.app.FragmentManager;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -28,16 +27,20 @@ public class Home_Toppicp_roblem extends AppCompatActivity  {
                     messagerfragment();
                     return  true;
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                    navigation();
                     return true;
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                    mTextMessage.setText(R.string.title_notifications);
                     return true;
-
             }
             return false;
         }
     };
+
+    private void navigation() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, Navigation.newInstance()).commit();
+    }
 
     private void messagerfragment() {
         getSupportFragmentManager().beginTransaction()
