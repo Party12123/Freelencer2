@@ -17,7 +17,6 @@ public class Detail_problem extends AppCompatActivity implements View.OnClickLis
     private EditText detail_Phone;
     private EditText detail_Problem;
     private EditText detail_Address;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,10 +33,9 @@ public class Detail_problem extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         if (view == next){
-            Adapter_List adapter_list = new Adapter_List();
-            adapter_list.SendDetail(detail_Address.getText().toString(),detail_Name.getText().toString()
-                    ,detail_Phone.getText().toString(),detail_Problem.getText().toString());
-            startActivity(new Intent(Detail_problem.this,Select_Technician.class));
+            SendDetail sendDetail = new SendDetail(detail_Address.getText().toString().trim(),detail_Name.getText().toString().trim(),
+                    detail_Phone.getText().toString().trim(),detail_Problem.getText().toString().trim());
+            startActivity(new Intent(Detail_problem.this,SendLocation.class));
         }
     }
 }

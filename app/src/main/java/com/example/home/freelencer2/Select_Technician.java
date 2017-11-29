@@ -25,13 +25,17 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Select_Technician extends AppCompatActivity {
+public class Select_Technician extends AppCompatActivity implements View.OnClickListener {
     RecyclerView recyclerView;
     List<List_Technician> list_Dataset;
     FirebaseDatabase database ;
     DatabaseReference databaseReference;
     Adapter_List adapter;
-	
+    Button btnMap;
+    public  static int check;
+	public Select_Technician(){
+
+    }
 	private static final String TAG = "Select_Technician";
 
     private static final int ERROR_DIALOG_REQUEST = 9001;
@@ -46,17 +50,21 @@ public class Select_Technician extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference().child("ช่าง");
-
-        adapter = new Adapter_List(list_Dataset);
-        recyclerView.setAdapter(adapter);
-        List();
-		
-		if(isServicesOK()){
-            init();
+        if(check == 0){
+            databaseReference = database.getReference().child("ช่าง").child("บ้าน");
         }
-		
-		
+        else if( check == 1){
+            databaseReference = database.getReference().child("ช่าง").child("รถยนต์");
+        }
+        else if(check == 2){
+            databaseReference = database.getReference().child("ช่าง").child("จักรยานยนต์");
+        }
+        adapter = new Adapter_List(list_Dataset,this);
+        recyclerView.setAdapter(adapter);
+        btnMap = findViewById(R.id.btnMap);
+        btnMap.setOnClickListener(this);
+        List();
+        isServicesOK();
     }
     
 	private void List(){
@@ -65,34 +73,23 @@ public class Select_Technician extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 list_Dataset.removeAll(list_Dataset);
                 for (DataSnapshot datashot:dataSnapshot.getChildren()) {
+                   String uid = datashot.getKey();
                     String name = datashot.child("ชื่อ").getValue().toString();
                     String image = datashot.child("ภาพ").getValue().toString();
                     String phone = datashot.child("เบอร์").getValue().toString();
                     String time = datashot.child("เวลา").getValue().toString();
-                    String uid = datashot.getKey();
                     List_Technician list = new List_Technician(name,phone,time,image,uid);
                     list_Dataset.add(list);
                 }
                 adapter.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
     }
-	
-	private void init(){
-        Button btnMap = (Button) findViewById(R.id.btnMap);
-        btnMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Select_Technician.this, SendLocation.class);
-                startActivity(intent);
-            }
-        });
-    }
+
 
     public boolean isServicesOK(){
         Log.d(TAG, "isServicesOK: checking google services version");
@@ -115,6 +112,13 @@ public class Select_Technician extends AppCompatActivity {
         return false;
     }
 
+    @Override
+    public void onClick(View view) {
+        if (view == btnMap){
+            Intent intent = new Intent(Select_Technician.this, Detail_problem.class);
+            startActivity(intent);
+        }
+    }
 }
 
 

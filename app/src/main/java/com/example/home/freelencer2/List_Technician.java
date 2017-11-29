@@ -15,9 +15,6 @@ public class List_Technician {
      private String uid;
      private Context getcontext;
 
-
-
-
     public List_Technician(){
 
     }

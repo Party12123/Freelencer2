@@ -24,8 +24,7 @@ public class homeFragment extends Fragment implements View.OnClickListener {
      private Button problem_Normal;
      private Button problem_Custum;
 
-     private FragmentManager fragmentManager;
-
+     Select_Technician select_technician = new Select_Technician();
     public homeFragment() {
         // Required empty public constructor
     }
@@ -62,13 +61,16 @@ public class homeFragment extends Fragment implements View.OnClickListener {
    @Override
     public void onClick(View view) {
        if (view == problem_Home){
-           startActivity(new Intent(getActivity(),Detail_problem.class));
+           startActivity(new Intent(getActivity(),Select_Technician.class));
+           select_technician.check = 0;
        }
        else if(view == problem_Car){
-            startActivity(new Intent(getActivity(),Detail_problem.class));
+            startActivity(new Intent(getActivity(),Select_Technician.class));
+           select_technician.check = 1;
        }
        else if(view == problem_Cycle){
-           startActivity(new Intent(getActivity(),Detail_problem.class));
+           startActivity(new Intent(getActivity(),Select_Technician.class));
+           select_technician.check = 2;
        }
     }
 }
