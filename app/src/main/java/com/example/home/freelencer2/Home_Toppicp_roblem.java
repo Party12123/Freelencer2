@@ -30,7 +30,7 @@ public class Home_Toppicp_roblem extends AppCompatActivity  {
                     navigation();
                     return true;
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_notifications);
+ 
                     return true;
             }
             return false;
